@@ -1,2 +1,5 @@
-# AWS-VPC-Domino
-Terraform para Crear VPN y Instancias de GIAHSA para CNX
+
+Terraform para Crear VPN y Instancias para ECERT
+
+Contactar con Juan Carlos Trigo para mas información.
+

@@ -15,8 +15,6 @@ data "cloudinit_config" "ECERT_server_config" {
   }
 }
 
-
-
 // Servidor 1 : ECERT-REST-API 
 
 resource "aws_instance" "ECERT_instance" {
@@ -36,7 +34,7 @@ resource "aws_instance" "ECERT_instance" {
   root_block_device {
     delete_on_termination = true
     volume_type           = "gp3"
-    volume_size           = 40
+    volume_size           = 100
   
     tags = {
       Name         = "ROOT"
