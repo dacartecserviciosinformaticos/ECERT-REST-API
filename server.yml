@@ -1,0 +1,65 @@
+#cloud-config
+runcmd:
+  - systemctl enable amazon-ssm-agent 
+  - systemctl start amazon-ssm-agent
+  - systemctl start xrdp
+package_upgrade: true
+packages:
+- epel-release
+- zsh
+- git
+- ansible
+- python-pip
+- mlocate
+- nc
+- amazon-efs-utils
+- whois
+- expect
+- tigervnc-server
+- xrdp
+- gnome-classic-session
+- gnome-terminal
+- nautilus-open-terminal
+- control-center
+- liberation-mono-fonts
+- xfce4
+- xeyes
+- https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+locale: en_US.utf-8
+hostname: ecert-rest-api
+fqdn: ecert-rest-api.giahsa-cloud.com
+prefer_fqdn_over_hostname: true
+users:
+  - default
+  - name: andres
+    gecos: Andres Gorostidi
+    selinux-user: staff_u
+    groups: users,wheel
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: false
+    hashed_passwd: $6$rounds=4096$VMl3sEjvZfsziID$dnCuWnjE6DRp1.6jNBAvSyElV1HweUeIBBars6A8rVnfnSsIpJDKUjMgMRNK8iSkk2iCVl1BIyuZPq3J6Yr73/
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCUCSGTnSSEPyzNsGsbomg62rQieNopikcOeEbb9/XEYIBX7fdFYsMiGI3yD9LDtYRd1MMNZ3EwVhYSQN1mlN6BcXwI+MpduR1iSdXyzplRfbRV1PlmN8YGExbiyhYNdoAUdA5uxrf9S9uz5gwROgraSloUs1JUopIqbeDD7oet+4vqga3NQ2iFnbE3V3fPTItwm4tgnv7QaphIyIaoSSDaJ+DduPraNhPAN8ckUShh8REkbLya0ceB3zVR9TgAm4GyfVsl0G5NQN26hY6OyH46locEYHm5YNuoE25x9WKg+lIGjNG2cJ1RRujUjO1mNM73GvpzInUVMG6/Qux6iDGD63LLOD+G/02vwdG3P1mpLA/lrLrj57Hjo64ZWNK9kBabwSiItnQXzLcCO0pPCREbx/0FqaPTj7bNjdkgcejsm1hzkkR0VYQjNe15MGMC/e1zcCwZFJreBbxaykidFs1spaeEO71nfFA8FJ8x7GndHuz0StBnZWLCJqtQ00/kzZ0= andres@DCT00175
+  - name: dacartec
+    gecos: Dacartec Admin
+    selinux-user: staff_u
+    groups: users,wheel
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: false
+    hashed_passwd: $6$rounds=4096$VMl3sEjvZfsziID$dnCuWnjE6DRp1.6jNBAvSyElV1HweUeIBBars6A8rVnfnSsIpJDKUjMgMRNK8iSkk2iCVl1BIyuZPq3J6Yr73/
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCUCSGTnSSEPyzNsGsbomg62rQieNopikcOeEbb9/XEYIBX7fdFYsMiGI3yD9LDtYRd1MMNZ3EwVhYSQN1mlN6BcXwI+MpduR1iSdXyzplRfbRV1PlmN8YGExbiyhYNdoAUdA5uxrf9S9uz5gwROgraSloUs1JUopIqbeDD7oet+4vqga3NQ2iFnbE3V3fPTItwm4tgnv7QaphIyIaoSSDaJ+DduPraNhPAN8ckUShh8REkbLya0ceB3zVR9TgAm4GyfVsl0G5NQN26hY6OyH46locEYHm5YNuoE25x9WKg+lIGjNG2cJ1RRujUjO1mNM73GvpzInUVMG6/Qux6iDGD63LLOD+G/02vwdG3P1mpLA/lrLrj57Hjo64ZWNK9kBabwSiItnQXzLcCO0pPCREbx/0FqaPTj7bNjdkgcejsm1hzkkR0VYQjNe15MGMC/e1zcCwZFJreBbxaykidFs1spaeEO71nfFA8FJ8x7GndHuz0StBnZWLCJqtQ00/kzZ0= andres@DCT00175
+  - name: ansible
+    gecos: Usuario para automatizaciones Ansible
+    selinux-user: staff_u
+    groups: users,wheel
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: false
+    hashed_passwd: $6$rounds=4096$VMl3sEjvZfsziID$dnCuWnjE6DRp1.6jNBAvSyElV1HweUeIBBars6A8rVnfnSsIpJDKUjMgMRNK8iSkk2iCVl1BIyuZPq3J6Yr73/
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCUCSGTnSSEPyzNsGsbomg62rQieNopikcOeEbb9/XEYIBX7fdFYsMiGI3yD9LDtYRd1MMNZ3EwVhYSQN1mlN6BcXwI+MpduR1iSdXyzplRfbRV1PlmN8YGExbiyhYNdoAUdA5uxrf9S9uz5gwROgraSloUs1JUopIqbeDD7oet+4vqga3NQ2iFnbE3V3fPTItwm4tgnv7QaphIyIaoSSDaJ+DduPraNhPAN8ckUShh8REkbLya0ceB3zVR9TgAm4GyfVsl0G5NQN26hY6OyH46locEYHm5YNuoE25x9WKg+lIGjNG2cJ1RRujUjO1mNM73GvpzInUVMG6/Qux6iDGD63LLOD+G/02vwdG3P1mpLA/lrLrj57Hjo64ZWNK9kBabwSiItnQXzLcCO0pPCREbx/0FqaPTj7bNjdkgcejsm1hzkkR0VYQjNe15MGMC/e1zcCwZFJreBbxaykidFs1spaeEO71nfFA8FJ8x7GndHuz0StBnZWLCJqtQ00/kzZ0= andres@DCT00175
+ssh_pwauth:   false
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCUCSGTnSSEPyzNsGsbomg62rQieNopikcOeEbb9/XEYIBX7fdFYsMiGI3yD9LDtYRd1MMNZ3EwVhYSQN1mlN6BcXwI+MpduR1iSdXyzplRfbRV1PlmN8YGExbiyhYNdoAUdA5uxrf9S9uz5gwROgraSloUs1JUopIqbeDD7oet+4vqga3NQ2iFnbE3V3fPTItwm4tgnv7QaphIyIaoSSDaJ+DduPraNhPAN8ckUShh8REkbLya0ceB3zVR9TgAm4GyfVsl0G5NQN26hY6OyH46locEYHm5YNuoE25x9WKg+lIGjNG2cJ1RRujUjO1mNM73GvpzInUVMG6/Qux6iDGD63LLOD+G/02vwdG3P1mpLA/lrLrj57Hjo64ZWNK9kBabwSiItnQXzLcCO0pPCREbx/0FqaPTj7bNjdkgcejsm1hzkkR0VYQjNe15MGMC/e1zcCwZFJreBbxaykidFs1spaeEO71nfFA8FJ8x7GndHuz0StBnZWLCJqtQ00/kzZ0= andres@DCT00175
+final_message: "The system is finally up, after $UPTIME seconds"
+
