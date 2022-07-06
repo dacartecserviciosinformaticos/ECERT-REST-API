@@ -36,7 +36,7 @@ resource "aws_security_group" "ECERT_sg" {
     from_port = 0
     to_port = 65535
     protocol = "tcp"
-    cidr_blocks = ["10.100.0.0/24","83.63.89.55/32"]
+    cidr_blocks = ["10.100.0.0/24","83.63.89.55/32","83.61.8.134/32","83.63.82.220/32","10.0.0.12/32","10.0.0.173/32"]
   }
 
 
